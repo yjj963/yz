@@ -365,7 +365,7 @@ only screen and (min-device-pixel-ratio:1.5) {
   right: 0;
   top: 0;
   bottom: 0;
-  background: url(/v2/image/yzapp/h5/2listicon_shouqing@2x.png) no-repeat 50%;
+  background: url(https://b.yzcdn.cn/v2/image/yzapp/h5/2listicon_shouqing@2x.png) no-repeat 50%;
   background-size: 40% auto;
   background-color: rgba(0, 0, 0, .3)
 }
