@@ -18,6 +18,8 @@
 </template>
 <script>
 import Address from 'js/addressService.js'
+import url from 'js/api.js'
+import axios from 'axios'
 
   export default {
     data(){
@@ -26,7 +28,7 @@ import Address from 'js/addressService.js'
       }
     },
     created(){
-      Address.list().then(res=>{
+      axios.get(url.addressLists).then(res=>{
         this.lists=res.data.lists
       })
     },

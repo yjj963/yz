@@ -2,9 +2,9 @@ import fetch from './fetch.js'
 import url from './api.js'
 
 class Address {
-    static list(){
-        return fetch(url.addressLists)
-    }
+    // static list(){
+    //     return fetch(url.addressLists)
+    // }
     static add(data){
         return fetch(url.addressAdd,data)
     }
