@@ -14,17 +14,17 @@
         <div class="block-item">
           <label>选择地区</label>
           <div class="select-group">
-            <select class="js-province-selector">
+            <select v-model='provinceValue' class="js-province-selector">
               <option value="-1">选择省份</option>
-              <option v-for='province in addressData.list' :value="provinceValue">{{province.label}}</option>
+              <option v-for='province in addressData.list' :value="province.value">{{province.label}}</option>
             </select>
-            <select class="js-city-selector">
+            <select v-model='cityValue' class="js-city-selector">
               <option value="-1">选择城市</option>
-              <option v-for='city in cityList'  :value="cityValue">{{city.label}}</option>
+              <option v-for='city in cityList'  :value="city.value">{{city.label}}</option>
             </select>
-            <select class="js-county-selector" name="area_code" data-code="440402">
+            <select v-model='districtValue' class="js-county-selector" name="area_code" data-code="440402">
               <option value="-1">选择地区</option>
-              <option v-for='district in districtList' :value="districtValue">{{district.label}}</option>
+              <option v-for='district in districtList' :value="district.value">{{district.label}}</option>
             </select>
           </div>
         </div>
