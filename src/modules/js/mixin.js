@@ -5,12 +5,13 @@ let mixin={
     },
     filters:{
         currency(price){
-            if(price%1===0){
-                 price=price+".00"  
+            let priceStr=''+price
+            if(priceStr.indexOf('.')>-1){
+                let arr=priceStr.split('.')
+                return arr[0]+'.'+(arr[1]+'0').substr(0,2)
             }else{
-                price=price+"0" 
+                return price+'00'
             }
-            return price
         }
     }
 }
