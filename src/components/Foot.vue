@@ -16,10 +16,7 @@
 <script>
 import qs from 'qs'
 
-//let {index}=qs.parse(location.search.substr(1))//把string解析为对象
-let idxStr=location.search.substr(1)
-let idxArr=idxStr.split('=')
-let index=parseInt(idxArr[1])
+let {index}=qs.parse(location.search.substr(1))//解析为对象,值还是string
 let navConfig=[{
   name:'有赞',
   href:'index.html',
@@ -44,8 +41,7 @@ export default {
   data () {
     return {
       navConfig:navConfig,
-      currentIndex:index||0
-      //parseInt(index)||0
+      currentIndex:parseInt(index)||0
     }
   },
   created(){
