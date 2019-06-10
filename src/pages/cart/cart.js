@@ -198,6 +198,7 @@ new Vue({
                 left='0px'
                 this.move=false
             }
+            console.log(this.$refs[`goods-${shopIndex}-${goodIndex}`])
             Volecity(this.$refs[`goods-${shopIndex}-${goodIndex}`], {
                 left
               })
