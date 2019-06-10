@@ -23,7 +23,6 @@ new Vue({
         getSearch(){
             axios.get(url.searchList,{params:{keyword,id}}).then(res=>{
                 this.searchLists=res.data.lists
-                console.log(this.searchLists)
             })
         },
         move(){

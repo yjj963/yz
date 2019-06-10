@@ -166,6 +166,7 @@ new Vue({
             this[attr]=!this[attr]
         },
         reduce(good){
+            if(good.number===1) return
             Cart.reduce(good.id).then(res=>{
                 good.number--
             })

@@ -34,7 +34,7 @@ new Vue({
                 this.getRank()
             }else{
                 axios.get(url.subList,{params:{id}}).then(res=>{
-                    console.log(res.data.data)
+                    console.log(res)
                     this.subData=res.data.data
                 })
             }

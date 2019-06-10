@@ -48,7 +48,6 @@ new Vue({
         getDeal(){
             axios.get(url.deal).then(res=>{
                 this.deal=res.data.data.lists
-                console.log(res.data.data.lists)
             })
         },
         changeTab(index){
