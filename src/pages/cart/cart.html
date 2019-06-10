@@ -57,7 +57,7 @@
                     :class='{editing:shop.editing}'
                     :ref="'goods-'+shopIndex+'-'+goodIndex"
                     @touchstart='start($event,good)'
-                    @touchend='end($event,shopIndex,good,goodIndex)'
+                    @touchend='end($event,shop,shopIndex,good,goodIndex)'
                   >
                     <div>
                       <div class="check-container" @click='selectGood(shop,good)'>
@@ -88,7 +88,9 @@
                             <!---->
                             <div class="quantity">
                               <button type="button" class="minus" :class="{'disabled':good.number===1}"></button>
-                              <input type="text" pattern="[0-9]*" class="txt" v-model="good.number">
+                              <input type="text" pattern="[0-9]*" class="txt" 
+                                v-model="good.number"
+                              >
                               <button type="button" class="plus "></button>
                               <div class="response-area response-area-minus" @click='reduce(good)'></div>
                               <div class="response-area response-area-plus" @click='add(good)'></div>
@@ -182,10 +184,12 @@
       </div>
       <hr style="margin: 9px -15px 10px;">
       <div class="btn-2-1" style="width: 47.5%;">
-          <p class="js-cancel center font-size-16" style="padding-top: 5px;" @click="removePopup=false">取消</p>
+          <p class="js-cancel center font-size-16" style="padding-top: 5px;" 
+            @click="removePopup=false">取消</p>
       </div>
       <div class="btn-2-1" style="width: 47.5%;">
-          <p class="js-ok center c-green font-size-16" style="padding-top: 5px;" @click="removeConfirm">确定</p>
+          <p class="js-ok center c-green font-size-16" style="padding-top: 5px;" 
+            @click="removeConfirm">确定</p>
       </div>
     </div>
   </div>
