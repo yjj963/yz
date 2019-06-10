@@ -69,7 +69,6 @@ export default {
         //     deep: true
         //   },
         provinceValue(val){
-            console.log(val)
             if(val===-1) return
             let index = this.addressData.list.findIndex(item => {
                 return item.value === val
