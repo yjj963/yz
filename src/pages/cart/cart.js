@@ -93,7 +93,7 @@ new Vue({
     },
     methods:{
         getLists(){
-            axios.get(url.cartLists,{params:{}}).then(res=>{
+            axios.get(url.cartLists).then(res=>{
                 let lists=res.data.cartList
                 lists.forEach(shop => {
                     shop.checked=true
@@ -119,29 +119,14 @@ new Vue({
                 this.editShop=null
                 this.editShopIndex=-1
             }
-            // this.lists.forEach((item,i)=>{
-            //     if(shopIndex!==i){
-            //         item.editing=false
-            //     }
-            // })
         },
         selectShop(shop){
-            // if(shop.editing){
-            //     shop.removeChecked=!shop.removeChecked
-            //     shop.goodsList.forEach(good=>{
-            //         good.removeChecked=shop.removeChecked
-            //     })
-            // }else{
-            //     shop.checked=!shop.checked
-            //     shop.goodsList.forEach(good=>{
-            //         good.checked=shop.checked
-            //     })
-            // }
             let attr=shop.editing?'removeChecked':'checked'
             shop[attr]=!shop[attr]
             shop.goodsList.forEach(good=>{
                 good[attr]=shop[attr]
             })
+            console.log(this.allSelected)
         },
         selectGood(shop,good){
             let attr=shop.editing?'removeChecked':'checked'
@@ -149,17 +134,6 @@ new Vue({
             shop[attr]=shop.goodsList.every(good=>{
                 return good[attr]
             })
-            // if(shop.editing){
-            //     good.removeChecked=!good.removeChecked
-            //     shop.removeChecked=shop.goodsList.every(good=>{
-            //         return good.removeChecked
-            //     })
-            // }else{
-            //     good.checked=!good.checked
-            //     shop.checked=shop.goodsList.every(good=>{
-            //         return good.checked
-            //     })
-            // }
         },
         selectAll(){
             let attr=this.editShop?'allRemoveSelected':'allSelected'

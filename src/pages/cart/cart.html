@@ -21,16 +21,23 @@
 </head>
 
 <body class=" body-fixed-bottom">
-  <div v-cloak class="container" style="min-height: 581px;">
+  <div v-cloak class="container" 
+    style="min-height: 581px;">
     <div class="content clearfix js-page-content">
       <div id="cart-container">
         <div>
-          <div class="js-shop-list shop-list" v-for='(shop,shopIndex) in lists'>
+          <div class="js-shop-list shop-list" 
+            v-for='(shop,shopIndex) in lists'>
             <div class="block block-order block-cart">
               <div class="header">
-                <div class="select-group js-select-group" @click='selectShop(shop)'>
-                  <span v-show='!shop.editing' :class="['check',{'checked':shop.checked}]"></span>
-                  <span v-show='shop.editing' :class="['check',{'checked':shop.removeChecked}]"></span>
+                <div class="select-group js-select-group" 
+                  @click='selectShop(shop)'>
+                  <span v-show='!shop.editing' 
+                    :class="['check',{'checked':shop.checked}]"
+                  ></span>
+                  <span v-show='shop.editing' 
+                    :class="['check',{'checked':shop.removeChecked}]"
+                  ></span>
                 </div> 
                 <a class="shop-title">
                   <i class="custom-store-img">店铺：</i>
@@ -42,9 +49,10 @@
                   {{shop.editMsg}}
                 </a>
               </div>
-              <!---->
               <div>
-                <ul class="js-list block block-list block-list-cart border-0" v-for='(good,goodIndex) in shop.goodsList'>
+                <ul class="js-list block block-list block-list-cart border-0" 
+                  v-for='(good,goodIndex) in shop.goodsList'
+                >
                   <li class="block-item block-item-cart"
                     :class='{editing:shop.editing}'
                     :ref="'goods-'+shopIndex+'-'+goodIndex"
@@ -57,12 +65,12 @@
                           <span v-show='shop.editing' :class="['check',{'checked':good.removeChecked}]"></span>
                         </div>
                       <div class="name-card clearfix">
-                        <a href="https://h5.youzan.com/v2/showcase/goods?alias=2oivacpjh2ex0" class="thumb js-goods-link">
-                          <img data-src="https://img.yzcdn.cn/upload_files/2017/07/04/Fqp4EItsHaclmGQPBoMkR1qKmKGi.jpg!200x200.jpg" class="js-lazy" :src="good.img">
+                        <a href="javascript:;" class="thumb js-goods-link">
+                          <img class="js-lazy" :src="good.img" data-src="https://img.yzcdn.cn/upload_files/2017/07/04/Fqp4EItsHaclmGQPBoMkR1qKmKGi.jpg!200x200.jpg">
                           <!---->
                         </a>
                         <div class="detail">
-                          <a href="https://h5.youzan.com/v2/showcase/goods?alias=2oivacpjh2ex0" class="js-goods-link">
+                          <a href="javascript:;" class="js-goods-link">
                             <h3 class="title js-ellipsis">
                               <i>{{good.title}}</i>
                             </h3>
@@ -91,7 +99,11 @@
                         </div>
                         <div class="error-box"></div>
                       </div>
-                      <div class="delete-btn" @click='remove(shop,shopIndex,good,goodIndex)'><span>删除</span></div>
+                      <div class="delete-btn" 
+                        @click='remove(shop,shopIndex,good,goodIndex)'
+                      >
+                        <span>删除</span>
+                      </div>
                     </div>
                   </li>
                 </ul>
