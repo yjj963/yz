@@ -20,7 +20,8 @@ new Vue({
         total:0,
         removeData:null,
         removePopup:false,
-        removeMsg:''
+        removeMsg:'',
+        move:false,
     },
     computed:{
         allSelected:{
@@ -109,6 +110,7 @@ new Vue({
             })
         },
         edit(shop,shopIndex){
+            if(this.move){return false}
             shop.editing=!shop.editing
             if(shop.editing){
                 shop.editMsg='完成'
@@ -182,16 +184,19 @@ new Vue({
             //记录起点 e.changedTouches[0].clientX
             good.startX=e.changedTouches[0].clientX
         },
-        end(e,shopIndex,good,goodIndex){
+        end(e,shop,shopIndex,good,goodIndex){
+            if(shop.editing){return false}
             //算一下移动的距离>10,切换到编辑样式
             //this.editing=true
             let endX=e.changedTouches[0].clientX
             let left='0'
             if(good.startX-endX>100){
                 left='-60px'
+                this.move=true
             }
             if(endX-good.startX>100){
                 left='0px'
+                this.move=false
             }
             Volecity(this.$refs[`goods-${shopIndex}-${goodIndex}`], {
                 left
