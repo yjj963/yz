@@ -64,7 +64,7 @@ export default {
             handler() {
               this.$router.go(-1)
             },
-            deep: true
+            deep: true//深度监听，可以监听到修改默认值
           },
         provinceValue(val){
             if(val===-1) return

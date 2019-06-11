@@ -22,16 +22,16 @@ import url from 'js/api.js'
 import axios from 'axios'
 
   export default {
-    data(){
-      return {
-        lists:null,
-      }
-    },
-    created(){
-      axios.get(url.addressLists).then(res=>{
-        this.lists=res.data.lists
-      })
-    },
+    computed: {
+    lists() {
+      return this.$store.state.lists
+    }
+  },
+  created() {
+    if(!this.lists){
+      this.$store.dispatch('getLists')
+    }
+  },
     methods:{
       toEdit(list){
          this.$router.push({ path: '/address/form', query: { type: 'edit', instance: list } })

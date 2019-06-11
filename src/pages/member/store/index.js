@@ -4,6 +4,8 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 import Address from 'js/addressService.js'
+import axios from 'axios'
+import url from 'js/api.js'
 
 // 创建Store实例
 const store = new Vuex.Store({
@@ -25,6 +27,7 @@ const store = new Vuex.Store({
       lists.splice(index, 1)
     },
     update(state, instance) {
+      //进行深复制，不然监听不到
       let lists = JSON.parse(JSON.stringify(state.lists))
       let index = lists.findIndex(item => {
         return item.id == instance.id
@@ -41,13 +44,15 @@ const store = new Vuex.Store({
   },
   actions: {
     getLists({commit}) {
-      Address.list().then(res => {
+      axios.get(url.addressLists).then(res => {
         commit('init', res.data.lists)
+        console.log(res)
       })
     },
     addAction({commit}, instance) {
       Address.add(instance).then(res => {
-        commit('add', res.data.data)
+        commit('add', instance)
+        console.log(instance)
       })
     },
     removeAction({commit}, id) {
@@ -57,13 +62,15 @@ const store = new Vuex.Store({
     },
     updateAction({commit}, instance) {
       Address.update(instance).then(res => {
-        // 实际开发使用
+        // 实际开发使用后台返回的数据
         // commit('update', res.data.data)
         // 测试使用
-        let data = res.data.data
+        console.log(instance)
+        let data = res.data
         data.id = instance.id
         data.isDefault = instance.isDefault
-        commit('update', data)
+        console.log(data)
+        commit('update', instance)
       })
     },
     setDefaultAction({commit}, id) {
