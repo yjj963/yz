@@ -2,6 +2,7 @@ import 'css/common.css'
 import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
+import store from './store'
 
 let routes = [{
     path: '/',
@@ -29,4 +30,5 @@ let router=new Router({
 new Vue({
     el:'#app',
     router,
+    store
 })

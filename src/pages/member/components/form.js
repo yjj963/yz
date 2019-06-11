@@ -11,6 +11,7 @@ export default {
             districtValue:-1,
             address:'',
             id:'',
+            isDefault:false,
             addressData:require('js/address.json'),
             provinceList:null,
             cityList:null,
@@ -32,6 +33,7 @@ export default {
             this.id=ad.id
             this.provinceValue=parseInt(ad.provinceValue)
             this.isInitVal = true
+            this.isDefault = ad.isDefault
         }
     },
     methods:{
@@ -39,35 +41,31 @@ export default {
             let {name,tel,provinceValue,cityValue,districtValue,address,id}=this
             let data={name,tel,provinceValue,cityValue,districtValue,address,id}
             if(this.$route.query.type==='edit'){
-                Address.update(data).then(res=>{
-                    this.$router.go(-1)
-                })
+                data.id = this.id
+                data.isDefault = this.isDefault
+                this.$store.dispatch('updateAction', data)
             }else{
-                Address.add(data).then(res=>{
-                    this.$router.go(-1)
-                })
+                this.$store.dispatch('addAction', data)
             }
         },
         remove(){
             if(window.confirm()){
-                Address.remove(this.id).then(res=>{
-                    this.$router.go(-1)
-                })
+                this.$store.dispatch('removeAction', this.id)
             }
         },
         setDefault(){
-            Address.setDefault(this.id).then(res=>{
-                this.$router.go(-1)
+            Address.setDefault(this.id).then(res => {
+                this.$store.dispatch('setDefaultAction', this.id)
             })
         }
     },
     watch:{
-        // lists: {
-        //     handler() {
-        //       this.$router.go(-1)
-        //     },
-        //     deep: true
-        //   },
+        lists: {
+            handler() {
+              this.$router.go(-1)
+            },
+            deep: true
+          },
         provinceValue(val){
             if(val===-1) return
             let index = this.addressData.list.findIndex(item => {
